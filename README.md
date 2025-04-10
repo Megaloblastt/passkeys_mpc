@@ -1,6 +1,8 @@
-# passkeys_mpc
+<h1> passkeys_mpc </h1>
 
-`passkeys_mpc` is a demo project showcasing how to integrate **FIDO2/WebAuthn** registration and authentication using **Multi-Party Computation (MPC)**. It leverages Fireblocks' `mpc-lib` to perform secure **Key Generation** and **ECDSA Signature** operations, allowing credential handling without exposing private key material.
+`passkeys_mpc` is a demo project showcasing how to integrate **FIDO2/WebAuthn** registration and authentication using **Multi-Party Computation (MPC)**. It leverages Fireblocks' `mpc-lib` to perform secure **Key Generation** and **ECDSA Signature** operations in a multi-party setting.
+
+**NB**: All parties involved in MPC computations run in the same process, so **there is no split, and all shares are stored at the same place**. **This is a demo only, and is not meant for security.**
 
 This project adapts:
 - [`softfido`](https://github.com/ellerh/softfido) – emulating a FIDO2 authenticator in software
@@ -8,6 +10,11 @@ This project adapts:
 - Fireblocks' `mpc-lib` – to perform MPC-based cryptographic operations
 
 > ✅ The demo interacts with [Yubico’s WebAuthn demo server](https://demo.yubico.com/webauthn-technical/registration) to showcase FIDO registration and login.
+
+---
+# DISCLAIMER
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHORS ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ---
 
@@ -108,5 +115,10 @@ Go to https://demo.yubico.com/webauthn-technical/registration and click the gree
 You will see in the log of the FIDO client colorized outputs depending on which cosigner is doing what.
 
 You can customize colors by modifying the following map `passkeys_mpc/SoftHSMv2/src/lib/crypto/OSSLMPCECDSA_mpclib_wrapper.h::colorized_outputs`
+
+## Authenticate on Yubikey's demo server
+Go to https://demo.yubico.com/webauthn-technical/login and follow the steps.
+
+**NB**: Both the registration and the login should be done within the same FIDO client run. If you restart the FIDO client, you should register it again to the server.
 
 # Troubleshooting
