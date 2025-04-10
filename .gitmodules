@@ -1,0 +1,6 @@
+[submodule "SoftHSMv2"]
+	path = SoftHSMv2
+	url = https://github.com/Megaloblastt/SoftHSMv2.git
+[submodule "softfido"]
+	path = softfido
+	url = https://github.com/Megaloblastt/softfido.git
