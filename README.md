@@ -63,11 +63,10 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPC_LIB_BUILD_LIB
 
 For more detailed instructions, refer to the official [mpc-lib build guide](https://github.com/fireblocks/mpc-lib).
 
-## Getting started
 
-### Build all subsequent modules
+### Build the SoftHSMv2 module
 ```
-./build_all.sh
+./build_softhsm.sh
 ```
 
 ### Install the SoftHSMv2 module (will ask for sudo password)
@@ -81,4 +80,33 @@ On Linux machines, it will install it under `/usr/local/lib/softhsm`, so make su
 softhsm2-util --init-token --slot 0 --label "softfido"
 ```
 
-You will be prompted to choose a user PIN, and SO (aka Security Officer) PIN.
+You will be prompted to choose a user PIN, and SO (aka Security Officer) PIN. Make sure to remember them!
+
+### Build the FIDO client
+```bash
+./build_softfido.sh
+```
+
+# Running the demo
+
+## Start the FIDO client
+
+```
+./softfido/target/debug/softfido --token-label softfido
+```
+
+## Attach a virtual USB to it (might require sudo)
+
+```
+modprobe vhci-hcd
+usbip attach -r 127.0.0.1 -d 1-1
+```
+
+## Register on Yubikey's demo server
+Go to https://demo.yubico.com/webauthn-technical/registration and click the green `NEXT` button.  You will be promted to allow the FIDO client to access to the request.
+
+You will see in the log of the FIDO client colorized outputs depending on which cosigner is doing what.
+
+You can customize colors by modifying the following map `passkeys_mpc/SoftHSMv2/src/lib/crypto/OSSLMPCECDSA_mpclib_wrapper.h::colorized_outputs`
+
+# Troubleshooting
