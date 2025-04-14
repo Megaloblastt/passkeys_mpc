@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: passkeys_mpc
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: Anonymous
+repository-code: 'https://github.com/Megaloblastt/passkeys_mpc'
+url: 'https://github.com/Megaloblastt/passkeys_mpc'
+abstract: >-
+  passkeys_mpc is a demo project showcasing how to integrate
+  FIDO2/WebAuthn registration and authentication using
+  Multi-Party Computation (MPC). It leverages Fireblocks'
+  mpc-lib to perform secure Key Generation and ECDSA
+  Signature operations in a multi-party setting.
+keywords:
+  - MPC
+  - PassKeys
+  - FIDO2
+  - Webauthn
